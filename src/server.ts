@@ -1,13 +1,23 @@
-import app from "./app";
+import express from "express";
+import cors from "cors";
 
-const bootstrap = () => {
-  try {
-    app.listen(5000, () => {
-      console.log(`server is running on ${5000}`);
-    });
-  } catch (error) {
-    console.log("Failed to start server: ", error);
-  }
-};
+const app = express();
+const PORT = Number(process.env.PORT) || 5000;
 
-bootstrap()
+app.use(cors());
+app.use(express.json());
+
+app.get("/", (_req, res) => {
+  res.json({
+    success: true,
+    message: "Healthcare Management API is running",
+  });
+});
+
+app.get("/health", (_req, res) => {
+  res.json({ status: "OK" });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
