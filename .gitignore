@@ -8,4 +8,4 @@ dist
 .claude/
 .windsurf/
 
-/generated/prisma
+/src/generated
